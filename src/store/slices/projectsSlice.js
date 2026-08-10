@@ -15,6 +15,10 @@ const projectsSlice = createSlice({
         setProjects(state, action) {
             state.items = action.payload;
         },
+        
+        clearProjects(state) {
+            state.items = [];
+        },
 
         selectProject(state, action) {
             state.selectedProject = action.payload;
@@ -23,11 +27,13 @@ const projectsSlice = createSlice({
         clearSelectedProject(state) {
             state.selectedProject = null;
         }
+
     }
 });
 
 export const {
     setProjects,
+    clearProjects,
     selectProject,
     clearSelectedProject
 } = projectsSlice.actions;

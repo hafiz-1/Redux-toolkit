@@ -26,6 +26,10 @@ const counterSlice = createSlice({
 
         toggleActive(state) {
             state.isActive = !state.isActive;
+        },
+
+        resetStep(state) {
+            state.step = 1;
         }
     }
 });
@@ -35,7 +39,7 @@ export const {
     decrement,
     incrementByAmount,
     setStep,
+    resetStep,
     toggleActive
 } = counterSlice.actions;
-
 export default counterSlice.reducer;

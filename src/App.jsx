@@ -3,49 +3,55 @@ import { useDispatch, useSelector } from "react-redux";
 import Counter from "./components/Counter";
 
 import {
-    setProjects
+  setProjects,
+  clearProjects
 } from "./store/slices/projectsSlice";
 
 import projects from "./projects";
 
 function App() {
 
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    const projectList = useSelector(
-        (state) => state.projects.items
-    );
+  const projectList = useSelector(
+    (state) => state.projects.items
+  );
 
-    return (
-        <div>
+  return (
+    <div>
 
-            <h1>Redux Toolkit Practice</h1>
+      <h1>Redux Toolkit Practice</h1>
 
-            {/* Counter Redux */}
-            <Counter />
+      {/* Counter Redux */}
+      <Counter />
 
-            <hr />
+      <hr />
 
-            {/* Projects Redux */}
+      {/* Projects Redux */}
 
-            <h2>Projects</h2>
+      <h2>Projects</h2>
 
-            <button onClick={() => dispatch(setProjects(projects))}>
-                Load Projects
-            </button>
+      <button onClick={() => dispatch(setProjects(projects))}>
+        Show Projects
+      </button>
 
-            {projectList.map((project) => (
-                <div key={project.id}>
+      {projectList.map((project) => (
+        <div key={project.id}>
 
-                    <h3>{project.title}</h3>
+          <h3>{project.title}</h3>
 
-                    <p>{project.description}</p>
-
-                </div>
-            ))}
+          <p>{project.description}</p>
 
         </div>
-    );
+      ))}
+
+      
+      <button onClick={() => dispatch(clearProjects())}>
+        Hide Projects
+      </button>
+
+    </div>
+  );
 }
 
 export default App;

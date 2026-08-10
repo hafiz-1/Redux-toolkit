@@ -47,6 +47,14 @@ function Counter() {
                 Toggle Status
             </button>
 
+            <button onClick={() => dispatch(setStep(5))}>
+                Set Step to 5
+            </button>
+
+            <button onClick={() => dispatch(resetStep())}>
+                Reset Step to 1
+            </button>
+
         </div>
     );
 }
