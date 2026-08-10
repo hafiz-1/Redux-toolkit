@@ -24,67 +24,111 @@ function App() {
     );
 
     return (
-        <div>
+        <div className="app">
 
             <h1>Redux Toolkit Practice</h1>
 
-            {/* Counter */}
-            <Counter />
+            {/* Counter Section */}
+            <section className="section">
 
-            <hr />
+                <Counter />
 
-            {/* Projects */}
-            <h2>Projects</h2>
-
-            <button onClick={() => dispatch(setProjects(projects))}>
-                Show Projects
-            </button>
-
-            <button onClick={() => dispatch(clearProjects())}>
-                Hide Projects
-            </button>
+            </section>
 
 
-            {/* THIS IS THE .map() */}
-            {projectList.map((project) => (
+            {/* Projects Section */}
+            <div className="projects-layout">
 
-                <div key={project.id}>
+                {/* Projects List */}
+                <div className="projects-container">
 
-                    <h3>{project.title}</h3>
-
-                    <p>{project.description}</p>
+                    <h2>Projects</h2>
 
                     <button
-                        onClick={() => dispatch(selectProject(project))}
+                        onClick={() => dispatch(setProjects(projects))}
                     >
-                        Select
+                        Show Projects
                     </button>
+
+                    <button
+                        onClick={() => dispatch(clearProjects())}
+                    >
+                        Hide Projects
+                    </button>
+
+
+                    <div className="project-list">
+
+                        {projectList.map((project) => (
+
+                            <div
+                                className="project"
+                                key={project.id}
+                            >
+
+                                <h3>{project.title}</h3>
+
+                                <p>{project.description}</p>
+
+                                <button
+                                    onClick={() =>
+                                        dispatch(selectProject(project))
+                                    }
+                                >
+                                    Select
+                                </button>
+
+                            </div>
+
+                        ))}
+
+                    </div>
 
                 </div>
 
-            ))}
 
+                {/* Selected Project */}
+                <div className="selected-container">
 
-            {/* Selected Project */}
-            {selectedProject && (
+                    {selectedProject ? (
 
-                <div>
+                        <div className="selected-project">
 
-                    <h2>Selected Project</h2>
+                            <h2>Selected Project</h2>
 
-                    <h3>{selectedProject.title}</h3>
+                            <h3>{selectedProject.title}</h3>
 
-                    <p>{selectedProject.description}</p>
+                            <p>
+                                {selectedProject.description}
+                            </p>
 
-                    <button
-                        onClick={() => dispatch(clearSelectedProject())}
-                    >
-                        Clear Selection
-                    </button>
+                            <button
+                                onClick={() =>
+                                    dispatch(clearSelectedProject())
+                                }
+                            >
+                                Clear Selection
+                            </button>
+
+                        </div>
+
+                    ) : (
+
+                        <div className="selected-project empty">
+
+                            <h2>Selected Project</h2>
+
+                            <p>
+                                Select a project to see its details.
+                            </p>
+
+                        </div>
+
+                    )}
 
                 </div>
 
-            )}
+            </div>
 
         </div>
     );
