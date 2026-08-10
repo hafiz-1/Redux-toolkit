@@ -1,7 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    value: 0
+    value: 0,
+    step: 1,
+    isActive: true
 };
 
 const counterSlice = createSlice({
@@ -11,15 +13,19 @@ const counterSlice = createSlice({
 
     reducers: {
         increment(state) {
-            state.value += 1;
+            state.value += state.step;
         },
 
         decrement(state) {
-            state.value -= 1;
+            state.value -= state.step;
         },
 
-        incrementByAmount(state, action) {
-            state.value += action.payload;
+        setStep(state, action) {
+            state.step = action.payload;
+        },
+
+        toggleActive(state) {
+            state.isActive = !state.isActive;
         }
     }
 });
@@ -27,7 +33,9 @@ const counterSlice = createSlice({
 export const {
     increment,
     decrement,
-    incrementByAmount
+    incrementByAmount,
+    setStep,
+    toggleActive
 } = counterSlice.actions;
 
 export default counterSlice.reducer;
