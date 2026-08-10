@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import {
     increment,
     decrement,
-    incrementByAmount,
     setStep,
+    resetStep,
     toggleActive
 } from "../store/slices/counterSlice";
 
@@ -19,7 +19,9 @@ function Counter() {
     return (
         <div>
 
-            <h2>Count: {count}</h2>
+            <h2>Counter</h2>
+
+            <h3>Count: {count}</h3>
 
             <p>Step: {step}</p>
 
@@ -35,18 +37,6 @@ function Counter() {
                 -
             </button>
 
-            <button onClick={() => dispatch(incrementByAmount(5))}>
-                Add 5
-            </button>
-
-            <button onClick={() => dispatch(setStep(5))}>
-                Set Step to 5
-            </button>
-
-            <button onClick={() => dispatch(toggleActive())}>
-                Toggle Status
-            </button>
-
             <button onClick={() => dispatch(setStep(5))}>
                 Set Step to 5
             </button>
@@ -55,8 +45,12 @@ function Counter() {
                 Reset Step to 1
             </button>
 
+            <button onClick={() => dispatch(toggleActive())}>
+                Toggle Status
+            </button>
+
         </div>
     );
 }
 
-export default Counter
+export default Counter;
