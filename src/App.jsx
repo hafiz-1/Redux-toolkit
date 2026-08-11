@@ -2,6 +2,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 import Counter from "./components/Counter";
 
+import ApiTest from "./components/ApiTest";
+
 import {
     setProjects,
     clearProjects,
@@ -32,6 +34,13 @@ function App() {
             <section className="section">
 
                 <Counter />
+
+            </section>
+
+            {/* API Test Section */}
+            <section className="section">
+
+                <ApiTest />
 
             </section>
 
