@@ -15,7 +15,7 @@ const projectsSlice = createSlice({
         setProjects(state, action) {
             state.items = action.payload;
         },
-        
+
         clearProjects(state) {
             state.items = [];
         },
@@ -26,8 +26,11 @@ const projectsSlice = createSlice({
 
         clearSelectedProject(state) {
             state.selectedProject = null;
-        }
+        },
 
+        setProjectsFromApi(state, action) {
+            state.items = action.payload;
+        }
     }
 });
 
@@ -35,7 +38,8 @@ export const {
     setProjects,
     clearProjects,
     selectProject,
-    clearSelectedProject
+    clearSelectedProject,
+    setProjectsFromApi
 } = projectsSlice.actions;
 
 export default projectsSlice.reducer;

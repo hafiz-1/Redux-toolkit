@@ -1,8 +1,16 @@
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+import { setProjectsFromApi } from "../store/slices/projectsSlice";
 
 function ApiTest() {
 
-    const [users, setUsers] = useState([]);
+    const dispatch = useDispatch();
+
+    const users = useSelector(
+        (state) => state.projects.items
+    );
+
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -22,7 +30,7 @@ function ApiTest() {
 
                 const data = await response.json();
 
-                setUsers(data);
+                dispatch(setProjectsFromApi(data));
 
             } catch (error) {
 
@@ -37,7 +45,8 @@ function ApiTest() {
 
         getUsers();
 
-    }, []);
+    }, [dispatch]);
+
 
     if (loading) {
         return <p>Loading users...</p>;
@@ -47,12 +56,14 @@ function ApiTest() {
         return <p>Error: {error}</p>;
     }
 
+
     return (
-        <div>
+        <div className="section">
 
             <h2>Users from API</h2>
 
             {users.map((user) => (
+
                 <div key={user.id}>
 
                     <h3>{user.name}</h3>
@@ -60,6 +71,7 @@ function ApiTest() {
                     <p>{user.email}</p>
 
                 </div>
+
             ))}
 
         </div>
